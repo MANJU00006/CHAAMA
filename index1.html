@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliTest | AI-Powered MCQ Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <link rel="stylesheet" href="styles/styles.css" />
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fas fa-brain"></i>
+            <span>IntelliTest</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-building"></i> Facilities</a></li>
+                <li><a href="#"><i class="fas fa-book"></i> Resources</a></li>
+                <li><a href="#"><i class="fas fa-file-alt"></i> Research Papers</a></li>
+                <li><a href="#"><i class="fas fa-archive"></i> Internet Archive</a></li>
+                <li><a href="#"><i class="fas fa-user-graduate"></i> Student Info</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-test-selector">
+        <h1>AI-Powered MCQ Test Platform</h1>
+        <p>
+            Experience the future of examinations with our intelligent platform that generates customized MCQ tests
+            based
+            on your preferences, powered by cutting-edge AI models.
+        </p>
+        <div class="hero-card">
+            <form id="testForm" class="test-form">
+                <table class="selector-table">
+                    <tr>
+                        <td><label for="testMode">Choose Test Mode</label></td>
+                        <td>
+                            <select id="testMode" required>
+
+                                <option value=""></option>
+                                <option value="practice">Practice</option>
+                                <option value="exam">Exam</option>
+                                <option value="timed">Timed Challenge</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="department">Department</label></td>
+                        <td>
+                            <select id="department" required>
+                                <option value=""></option>
+                                <option value="cse">Computer Science</option>
+                                <option value="ece">Electronics</option>
+                                <option value="mech">Mechanical</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="subject">Subject</label></td>
+                        <td>
+                            <select id="subject" required>
+                                <option value=""></option>
+                                <option value="ai">Artificial Intelligence</option>
+                                <option value="maths">Mathematics</option>
+                                <option value="physics">Physics</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="topic">Topic</label></td>
+                        <td>
+                            <select id="topic" required>
+                                <option value=""></option>
+                                <option value="ml">Machine Learning</option>
+                                <option value="dsa">Data Structures</option>
+                                <option value="algo">Algorithms</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+
+                <button type="submit" id="startBtn" class="cta-btn big-btn">Start</button>
+            </form>
+            <div class="divider">or</div>
+            <button onclick="startRandomTest()" class="secondary-btn big-btn">Start Random Test</button>
+        </div>
+    </section>
+
+      <!-- login Section -->
+
+    <section class="login-section">
+        <h2>Login</h2>
+        <form id="loginForm" autocomplete="off" novalidate>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter username" required />
+            </div>
+            <div class="input-group password-group">
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" placeholder="Enter password" required />
+                </div>
+            </div>
+            <button type="submit" id="proceedBtn" disabled>Proceed</button>
+        </form>
+    </section>
+
+    <!-- Test Dashboard -->
+
+    <section class="dashboard" id="dashboard">
+        <h2 class="section-title">Test Dashboard</h2>
+        <div class="dashboard-grid">
+            <div class="test-card">
+                <h3><i class="fas fa-laptop-code"></i> Computer Science Fundamentals</h3>
+                <div class="test-meta">
+                    <span><i class="fas fa-book"></i> 30 Questions</span>
+                    <span><i class="fas fa-clock"></i> 45 Minutes</span>
+                </div>
+                <p>Test your knowledge of core CS concepts including algorithms, data structures, and OOP principles.
+                </p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 40%;"></div>
+                </div>
+                <div class="test-actions">
+                    <a href="#" class="test-btn start" onclick="startTest('Computer Science Fundamentals')">Start
+                        Test</a>
+                    <a href="#" class="test-btn">Review</a>
+                </div>
+            </div>
+            <div class="test-card">
+                <h3><i class="fas fa-dna"></i> Advanced Biology</h3>
+                <div class="test-meta">
+                    <span><i class="fas fa-book"></i> 25 Questions</span>
+                    <span><i class="fas fa-clock"></i> 35 Minutes</span>
+                </div>
+                <p>Examination on molecular biology, genetics, and cellular processes. Recommended for medical students.
+                </p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 65%;"></div>
+                </div>
+                <div class="test-actions">
+                    <a href="#" class="test-btn start" onclick="startTest('Advanced Biology')">Start Test</a>
+                    <a href="#" class="test-btn">Review</a>
+                </div>
+            </div>
+
+            <div class="test-card">
+                <h3><i class="fas fa-flask"></i> Organic Chemistry</h3>
+                <div class="test-meta">
+                    <span><i class="fas fa-book"></i> 28 Questions</span>
+                    <span><i class="fas fa-clock"></i> 40 Minutes</span>
+                </div>
+                <p>Comprehensive test covering functional groups, reaction mechanisms, and stereochemistry concepts.</p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 50%;"></div>
+                </div>
+                <div class="test-actions">
+                    <a href="#" class="test-btn start" onclick="startTest('Organic Chemistry')">Start Test</a>
+                    <a href="#" class="test-btn">Review</a>
+                </div>
+            </div>
+
+            <div class="test-card">
+                <h3><i class="fas fa-robot"></i> Machine Learning</h3>
+                <div class="test-meta">
+                    <span><i class="fas fa-book"></i> 30 Questions</span>
+                    <span><i class="fas fa-clock"></i> 45 Minutes</span>
+                </div>
+                <p>Evaluation of supervised and unsupervised learning algorithms, neural networks, and model evaluation
+                    techniques.</p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 75%;"></div>
+                </div>
+                <div class="test-actions">
+                    <a href="#" class="test-btn start" onclick="startTest('Machine Learning')">Start Test</a>
+                    <a href="#" class="test-btn">Review</a>
+                </div>
+            </div>
+            <div class="test-card">
+                <h3><i class="fas fa-calculator"></i> Calculus & Analysis</h3>
+                <div class="test-meta">
+                    <span><i class="fas fa-book"></i> 20 Questions</span>
+                    <span><i class="fas fa-clock"></i> 30 Minutes</span>
+                </div>
+                <p>Challenging problems on differential and integral calculus, series, and multivariable functions.</p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 25%;"></div>
+                </div>
+                <div class="test-actions">
+                    <a href="#" class="test-btn start" onclick="startTest('Calculus & Analysis')">Start Test</a>
+                    <a href="#" class="test-btn">Review</a>
+                </div>
+            </div>
+            <div class="test-card">
+                <h3><i class="fas fa-atom"></i> Quantum Physics</h3>
+                <div class="test-meta">
+                    <span><i class="fas fa-book"></i> 35 Questions</span>
+                    <span><i class="fas fa-clock"></i> 50 Minutes</span>
+                </div>
+                <p>Advanced test covering quantum mechanics principles, wave functions, and particle physics.</p>
+                <div class="progress-container">
+                    <div class="progress-bar" style="width: 85%;"></div>
+                </div>
+                <div class="test-actions">
+                    <a href="#" class="test-btn start" onclick="startTest('Quantum Physics')">Start Test</a>
+                    <a href="#" class="test-btn">Review</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2 class="section-title">Key Features</h2>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI-Powered Generation</h3>
+                <p>Questions generated in real-time by advanced AI models like ChatGPT, Claude, and Gemini based on your
+                    selected topics and difficulty.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+                <h3>Customizable Tests</h3>
+                <p>Create tests tailored to your needs by selecting department, course, subject, topics, difficulty
+                    level, and time limit.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Secure Exam Environment</h3>
+                <p>Strict anti-cheating measures including tab switching detection that terminates the exam immediately
+                    upon malpractice.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Performance Analytics</h3>
+                <p>Detailed insights into your performance with historical data tracking to monitor your progress over
+                    time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-cloud-download-alt"></i>
+                </div>
+                <h3>Cloud Storage</h3>
+                <p>All your tests and results are securely stored in the cloud for future reference and analysis.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+
+                </div>
+                <h3>Fully Responsive</h3>
+                <p>Access your tests and learning materials from any device - desktop, tablet, or mobile phone.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Slideshow -->
+    <section class="slideshow">
+        <h2 class="section-title">Trending in Education</h2>
+        <div class="slideshow-container">
+            <div class="slide active"
+                style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
+                <div class="slide-content">
+                    <h3>AI Revolution in Education</h3>
+                    <p>How artificial intelligence is transforming learning methodologies and personalized education
+                        experiences worldwide.</p>
+                    <a href="#" class="cta-btn">Read More</a>
+                </div>
+            </div>
+            <div class="slide"
+                style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
+                <div class="slide-content">
+                    <h3>Future of Online Examinations</h3>
+                    <p>Exploring the next generation of secure, AI-proctored testing systems that prevent cheating while
+                        ensuring fairness.</p>
+                    <a href="#" class="cta-btn">Read More</a>
+                </div>
+            </div>
+            <div class="slide"
+                style="background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');">
+                <div class="slide-content">
+                    <h3>Personalized Learning Paths</h3>
+                    <p>How adaptive learning algorithms are creating customized educational experiences for every
+                        student.</p>
+                    <a href="#" class="cta-btn">Read More</a>
+                </div>
+            </div>
+            <div class="slide-nav">
+                <div class="slide-dot active"></div>
+                <div class="slide-dot"></div>
+                <div class="slide-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Facilities</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Resources</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Research Papers</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Student Info</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Terms & Conditions</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Cookie Policy</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Data Protection</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Documentation</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Tutorials</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> API Reference</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Support Center</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>About Author</h3>
+                <div class="about-author">
+                    <div class="author-avatar">JD</div>
+                    <div class="author-info">
+                        <h4>John Doe</h4>
+                        <p>Senior Developer & Educator</p>
+                    </div>
+                </div>
+                <p style="margin-top: 1rem; line-height: 1.6;">Passionate about creating educational technologies that
+                    make learning accessible, engaging, and effective for everyone.</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 IntelliTest AI Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Test Modal -->
+    <div class="modal" id="testModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeTest()">&times;</button>
+            <div class="test-header">
+                <div class="test-info">
+                    <h2 id="testTitle">Computer Science Fundamentals</h2>
+                    <p>Department: Computer Science | Difficulty: Medium</p>
+                </div>
+                <div class="timer">
+                    <i class="fas fa-clock"></i>
+                    <span id="timer">45:00</span>
+                </div>
+            </div>
+
+            <div class="question-container">
+                <div class="question" id="question">
+                    Which data structure uses the LIFO (Last In First Out) principle?
+                </div>
+
+                <div class="options">
+                    <div class="option" onclick="selectOption(this)">
+                        <div class="option-label">A</div>
+                        <div>
+                            <input type="radio" name="answer" style="display: none;">
+                            Queue
+                        </div>
+                    </div>
+                    <div class="option" onclick="selectOption(this)">
+                        <div class="option-label">B</div>
+                        <div>
+                            <input type="radio" name="answer" style="display: none;">
+                            Stack
+                        </div>
+                    </div>
+                    <div class="option" onclick="selectOption(this)">
+                        <div class="option-label">C</div>
+                        <div>
+                            <input type="radio" name="answer" style="display: none;">
+                            Linked List
+                        </div>
+                    </div>
+                    <div class="option" onclick="selectOption(this)">
+                        <div class="option-label">D</div>
+                        <div>
+                            <input type="radio" name="answer" style="display: none;">
+                            Tree
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="test-controls">
+                <button class="nav-btn">
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button class="nav-btn submit-btn" onclick="showResults()">
+                    Submit Test <i class="fas fa-paper-plane"></i>
+                </button>
+                <button class="nav-btn">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Modal -->
+    <div class="modal" id="resultsModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeResults()">&times;</button>
+            <div class="results-container">
+                <div class="score-circle">
+                    <div class="score-inner">
+                        <div class="score-value">85%</div>
+                        <div class="score-text">Score</div>
+                    </div>
+                </div>
+
+                <h2>Test Completed Successfully!</h2>
+                <p>You've performed exceptionally well on the Computer Science Fundamentals test.</p>
+
+                <div class="results-details">
+                    <div class="result-card">
+                        <h3>Questions</h3>
+                        <p>30</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Correct</h3>
+                        <p>25</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Incorrect</h3>
+                        <p>5</p>
+                    </div>
+                    <div class="result-card">
+                        <h3>Time Taken</h3>
+                        <p>38:22</p>
+                    </div>
+                </div>
+
+                <button class="review-btn" onclick="closeResults()">
+                    <i class="fas fa-list"></i> Review Answers
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/scripts.js"></script>
+</body>
+
+</html>
